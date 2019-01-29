@@ -1,0 +1,103 @@
+*{
+    margin: 0;
+    padding: 0;}
+body{
+    background: #103552 url("../img/body_bg.jpg") repeat-x;
+    /* overflow:hidden; */
+    }
+.box-3d{
+    width: 100%;
+    perspective: 2000px;
+    position:absolute;
+    bottom: 50px;
+    text-align:center;
+}
+.box-3d-content{
+    width: 50px;
+    height: 50px;
+    display:inline-block;
+    margin:0 50px;
+    transform-origin: 50%;
+    transform: rotateY(0deg) rotateX(0deg);
+    transition: transform 0.5s linear;
+    transform-style: preserve-3d;
+}
+.box-3d-content img {
+    width: 100%;
+    height: 100%;
+    background-color:rgba(165,255,242, 0.479);
+    position: absolute;
+    left: 0;
+    top: 0;
+    border:2px solid rgb(165,255,242);
+    border-radius:10%;
+}
+.box-3d-content img:nth-child(1) {
+    transform: translateZ(25px);
+}
+.box-3d-content img:nth-child(2) {
+    transform: rotateY(90deg) translateZ(25px);
+}
+.box-3d-content img:nth-child(3) {
+    transform: rotateY(-90deg) translateZ(25px);
+}
+.box-3d-content img:nth-child(4) {
+    transform: rotateX(-90deg) translateZ(25px);
+}
+.box-3d-content img:nth-child(5) {
+    transform: rotateX(90deg) translateZ(25px);
+}
+.box-3d-content img:nth-child(6) {
+    transform:translateZ(-25px);
+}
+.box-3d .title {
+    width: 100%;
+    height: 50px;
+    
+    transform-origin: 50%;
+    transition: transform 0.5s linear;
+    transform-style: preserve-3d;
+    opacity: 0;
+}
+.box-3d .title span{
+    width: 80px;
+    height: 50px;
+    color:#fff;
+    margin:30px 35px;
+    font-size:16px;
+    display:inline-block;
+}
+
+#preview{
+    width: 50% ;
+    height: 400px;
+    margin:50px auto;
+    position:relative;
+    z-index:1;
+}
+#preview #preview_img{
+    width: 100%;
+    height: 100%;
+    background-color: #959203;
+    /*margin-left: 20px;*/
+    position:absolute;
+
+
+}
+#preview #preview_img li{
+    width: 100%;
+    height: 100%;
+    list-style:none;
+    position: absolute;
+    text-align:center;
+    border:2px solid rgb(165,255,242);
+    overflow:hidden;
+    background:  #103552 url("../img/body_bg.jpg") repeat-x;
+}
+ #preview #preview_img li img{
+     margin: 0 -100%;
+     height: 100%;
+ }
+
+ .img1 { width:7px; height:7px; background:url("../img/spark1.png"); position:absolute; top:0; left:0; }
+ .img2 { width:14px; height:14px; background:url("../img/spark2.png"); position:absolute; top:0; left:0; }

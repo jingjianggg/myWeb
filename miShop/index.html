@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <!-- 放在头部最顶上 -->
+  <script type="text/javascript" src="dist/js/flexible/flexible_css.js"></script>
+  <!-- 放在头部最顶上 -->
+  <script type="text/javascript" src="dist/js/flexible/flexible.js"></script>
+  <!-- 解决自动识别数字为电话号码问题 -->
+  <meta name="format-detection" content="telephone=no">
+  <!-- UC强制竖屏 -->
+  <meta name="screen-orientation" content="portrait">
+  <!-- QQ强制竖屏 -->
+  <meta name="x5-orientation" content="portrait">
+  <title>index</title>
+  <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+  <!-- Build CSS -->
+  <link rel="stylesheet" type="text/css" href="src/css/main.css">
+</head>
+
+<body>
+  <div class="warp">
+    <div class="nav" id="nav">
+      <div class="item on">综合</div>
+      <div class="item">销量</div>
+      <div class="item">价格</div>
+      <div class="item">刷选</div>
+    </div>
+  </div>
+  <div class="list-box">
+    <ul>
+        <li>
+          <a class="item" href="javascript:;">
+            <img src="img/mi8.png" />
+            <span class="spanWrap">
+              <span class="sTitle l-ell ">AI超感双摄，三星AMOLED屏幕,AI超感双摄，三星AMOLED屏幕</span>
+              <span class="sPrice">¥1799.00</span>
+              <span class="sComment">好评96% 59091人</span>
+            </span>
+          </a>
+        </li>
+        <li>
+          <a class="item" href="javascript:;">
+            <img src="img/max3.png" />
+            <span class="spanWrap">
+              <span class="sTitle l-ell ">6.44''大屏，5300mAh 充电宝级的大电量</span>
+              <span class="sPrice">¥1199.00</span>
+              <span class="sComment">好评96% 59091人</span>
+            </span>
+          </a>
+        </li>
+        <li>
+          <a class="item" href="javascript:;">
+            <img src="img/mix2.png" />
+            <span class="spanWrap">
+              <span class="sTitle l-ell ">全面屏2.0,Unibody 全陶瓷,全面屏2.0,Unibody 全陶瓷</span>
+              <span class="sPrice">¥2799.00</span>
+              <span class="sComment">好评96% 59091人</span>
+            </span>
+          </a>
+        </li>
+        <li>
+          <a class="item" href="javascript:;">
+            <img src="img/mi8.png" />
+            <span class="spanWrap">
+              <span class="sTitle l-ell ">AI超感双摄，三星AMOLED屏幕,AI超感双摄，三星AMOLED屏幕</span>
+              <span class="sPrice">¥1799.00</span>
+              <span class="sComment">好评96% 59091人</span>
+            </span>
+          </a>
+        </li>
+        <li>
+          <a class="item" href="javascript:;">
+            <img src="img/mi8.png" />
+            <span class="spanWrap">
+              <span class="sTitle l-ell ">AI超感双摄，三星AMOLED屏幕,AI超感双摄，三星AMOLED屏幕</span>
+              <span class="sPrice">¥1799.00</span>
+              <span class="sComment">好评96% 59091人</span>
+            </span>
+          </a>
+        </li>
+        <li>
+          <a class="item" href="javascript:;">
+            <img src="img/mi8.png" />
+            <span class="spanWrap">
+              <span class="sTitle l-ell ">AI超感双摄，三星AMOLED屏幕,AI超感双摄，三星AMOLED屏幕</span>
+              <span class="sPrice">¥1799.00</span>
+              <span class="sComment">好评96% 59091人</span>
+            </span>
+          </a>
+        </li>
+        <li>
+          <a class="item" href="javascript:;">
+            <img src="img/mi8.png" />
+            <span class="spanWrap">
+              <span class="sTitle l-ell ">AI超感双摄，三星AMOLED屏幕,AI超感双摄，三星AMOLED屏幕</span>
+              <span class="sPrice">¥1799.00</span>
+              <span class="sComment">好评96% 59091人</span>
+            </span>
+          </a>
+        </li>
+    </ul>
+  </div>
+  <div id="imgPage">
+    <div class="header">
+      大图预览
+      <a href="javascript:;" id="backBtn">
+        &lt;
+      </a>
+    </div>
+    <div class="imgWrap">
+      <p class="img-box">
+        <img src="" id="bigImg" />
+      </p>
+      <nav id="imgNavs">
+        <a class="t-left" href="javascript:;">向左旋转90</a>
+        <a class="t-right" href="javascript:;">向右旋转90</a>
+        <a class="t-fd" href="javascript:;">放大</a>
+        <a class="t-sx" href="javascript:;">缩小</a>
+      </nav>
+    </div>
+  </div>
+  <script src="dist/js/lib/jquery-3.0.0.min.js"></script>
+  <script>
+    $(function () {
+      $(".list-box .item").click(function () {
+        $('body').addClass('over-hidden')
+        $('#imgPage').show();
+        var src = $(this).find("img").attr('src');
+        $("#bigImg").attr('src', src)
+      })
+
+      $('#backBtn').click(function () {
+        $('#imgPage').hide();
+        $('body').removeClass('over-hidden');
+        $("#bigImg").parent("p").css({
+          "transform": "",
+            "-moz-transform": "",
+            "-ms-transform": "",
+            "-o-transform": "",
+            "-webkit-transform": ""
+        });
+        $("#bigImg").css({
+            "transform": "",
+            "-moz-transform": "",
+            "-ms-transform": "",
+            "-o-transform": "",
+            "-webkit-transform": ""
+          });
+          zoom_n = 1;
+          spin_n = 0;
+      })
+
+      var zoom_n = 1;
+      // 放大
+      $('.t-fd').click(function () {
+        zoom_n += 0.1;
+        if (zoom_n >= 1.6) {
+          zoom_n = 1.6;
+          $("#bigImg").css({
+            "transform": "scale(1.6)",
+            "-moz-transform": "scale(1.6)",
+            "-ms-transform": "scale(1.6)",
+            "-o-transform": "scale(1.6)",
+            "-webkit-transform": "scale(1.6)"
+          });
+        } else {
+          $("#bigImg").css({
+            "transform": "scale(" + zoom_n + ")",
+            "-moz-transform": "scale(" + zoom_n + ")",
+            "-ms-transform": "scale(" + zoom_n + ")",
+            "-o-transform": "scale(" + zoom_n + ")",
+            "-webkit-transform": "scale(" + zoom_n + ")"
+          });
+        }
+      })
+      //缩小
+      $('.t-sx').click(function () {
+        zoom_n -= 0.1;
+        if (zoom_n <= 0.1) {
+          zoom_n = 0.1;
+          $("#bigImg").css({
+            "transform": "scale(.1)",
+            "-moz-transform": "scale(.1)",
+            "-ms-transform": "scale(.1)",
+            "-o-transform": "scale(.1)",
+            "-webkit-transform": "scale(.1)"
+          });
+        } else {
+          $("#bigImg").css({
+            "transform": "scale(" + zoom_n + ")",
+            "-moz-transform": "scale(" + zoom_n + ")",
+            "-ms-transform": "scale(" + zoom_n + ")",
+            "-o-transform": "scale(" + zoom_n + ")",
+            "-webkit-transform": "scale(" + zoom_n + ")"
+          });
+        }
+      })
+      var spin_n = 0;
+      //旋转 旋转时旋转图片的父级   避免和放大样式冲突
+      $('.t-right').click(function () {
+        spin_n += 90;
+        $("#bigImg").parent("p").css({
+          "transform": "rotate(" + spin_n + "deg)",
+          "-moz-transform": "rotate(" + spin_n + "deg)",
+          "-ms-transform": "rotate(" + spin_n + "deg)",
+          "-o-transform": "rotate(" + spin_n + "deg)",
+          "-webkit-transform": "rotate(" + spin_n + "deg)"
+        });
+      })
+      //旋转
+      $('.t-left').click(function () {
+        spin_n -= 90;
+        $("#bigImg").parent("p").css({
+          "transform": "rotate(" + spin_n + "deg)",
+          "-moz-transform": "rotate(" + spin_n + "deg)",
+          "-ms-transform": "rotate(" + spin_n + "deg)",
+          "-o-transform": "rotate(" + spin_n + "deg)",
+          "-webkit-transform": "rotate(" + spin_n + "deg)"
+        });
+      })
+
+      $("#nav .item").click(function () {
+        $(this).addClass('on').siblings().removeClass('on')
+      })
+    })
+  </script>
+</body>
+
+</html>

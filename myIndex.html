@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="css/myWeb.css">
+
+
+</head>
+<body>
+    <div id="star"></div>
+    <div id="preview">
+        <ul id="preview_img">
+            <li><img src="img/miCom.jpg" alt=""></li>
+            <li><img src="img/canvas.jpg" alt=""></li>
+            <li><img src="img/photo.jpg" alt=""></li>
+            <li><img src="img/game.jpg" alt=""></li>
+            <li><img src="img/stickHero.jpg" alt=""></li>
+            <li><img src="img/QRcode.jpg" alt=""></li>
+        </ul>
+
+    </div>
+    <div class="box-3d">
+        <div class="box-3d-content">
+            <img src="img/mi-logo.jpg" alt="">
+            <img src="img/mi-logo.jpg" alt="">
+            <img src="img/mi-logo.jpg" alt="">
+            <img src="img/mi-logo.jpg" alt="">
+            <img src="img/mi-logo.jpg" alt="">
+            <img src="img/mi-logo.jpg" alt="">
+        </div>
+        <div class="box-3d-content">
+            <img src="img/frog.png" alt="">
+            <img src="img/frog.png" alt="">
+            <img src="img/frog.png" alt="">
+            <img src="img/frog.png" alt="">
+            <img src="img/frog.png" alt="">
+            <img src="img/frog.png" alt="">
+        </div>
+        <div class="box-3d-content">
+            <img src="img/am.png" alt="">
+            <img src="img/am.png" alt="">
+            <img src="img/am.png" alt="">
+            <img src="img/am.png" alt="">
+            <img src="img/am.png" alt="">
+            <img src="img/am.png" alt="">
+        </div>
+        <div class="box-3d-content">
+            <img src="img/0.gif" alt="">
+            <img src="img/0.gif" alt="">
+            <img src="img/0.gif" alt="">
+            <img src="img/0.gif" alt="">
+            <img src="img/0.gif" alt="">
+            <img src="img/0.gif" alt="">
+        </div>
+        <div class="box-3d-content">
+            <img src="img/hero.png" alt="">
+            <img src="img/hero.png" alt="">
+            <img src="img/hero.png" alt="">
+            <img src="img/hero.png" alt="">
+            <img src="img/hero.png" alt="">
+            <img src="img/hero.png" alt="">
+        </div>
+        <div class="box-3d-content">
+            <img src="img/max3.png" alt="">
+            <img src="img/max3.png" alt="">
+            <img src="img/max3.png" alt="">
+            <img src="img/max3.png" alt="">
+            <img src="img/max3.png" alt="">
+            <img src="img/max3.png" alt="">
+        </div>
+        <div class="title">
+            <span>小米官网</span>
+            <span>简易祖玛</span>
+            <span>相册幻灯片</span>
+            <span>手速小游戏</span>
+            <span>棍子英雄</span>
+            <span>移动端</span>
+        </div>
+    </div>
+
+    <script src="js/jquery 3.3.1.js"></script>
+    <script src="js/newMove.js"></script>
+    <script src="js/fnStar.js"></script>
+    <script src="js/myWeb.js"></script>
+    <script>
+        
+        $(function(){
+            var arrWeb=['mi.html','zuma.html','photo.html','game.html','stickHero.html','miShop/index.html'];
+            $(".box-3d-content").click(function(){
+                var $This=$(this).index();
+                var newWeb=window.open('_blank');                
+                newWeb.location=arrWeb[$This];
+            });
+        });
+        fnStar();
+    </script>
+
+</body>
+</html>

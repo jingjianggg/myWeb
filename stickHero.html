@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #wrap{position:relative;overflow:hidden;width:300px;height:500px;border:1px solid #000;margin:70px auto;}
+        #gameContent{width:600px;height:500px;background:lightskyblue;position:relative;left:0;}
+        #leftDiv{width:80px;height:200px;background:#000;position:absolute;bottom:0;}
+        #hero{
+            width: 40px;
+            height: 40px;
+            background:url("img/hero.png")no-repeat;
+            position: absolute;
+            left: 0;
+            bottom: 200px;
+            text-align: center;
+        }
+        #middleDiv{
+            width: 80px;
+            height: 200px;
+            background: black;
+            position: absolute;
+            bottom: 0;
+            left: 200px;
+            text-align: center;
+        }
+        #rightDiv{
+            width: 80px;
+            height: 200px;
+            background: black;
+            position: absolute;
+            bottom: 0;
+            left: 400px;
+            text-align: center;
+        }
+        #stick{
+            width: 0px;
+            height:2px;
+            background: #000;
+            position: absolute;
+            left: 40px;
+            bottom: 200px;
+            transform: rotate(-90deg);
+            transform-origin:0 6px;
+            /*transition: 0.5s;*/
+        }
+        img{display:block;
+            position: absolute;
+            bottom:0;
+            animation:move 10s linear 0s infinite normal;}
+        @keyframes move {
+            from{
+                margin-left:0;
+            }
+            to{
+                margin-left:-419px;
+            }
+        }
+        #score{position:absolute;
+            width: 70px;
+            font: 25px/30px "黑体";
+            z-index: 33;
+            top: 10px;
+            left:50%;
+            margin-left:-35px;
+            background:#000;
+            color:#fff;
+            text-align: center;
+        }
+        p{
+            display:block;
+            width: 100px;
+            font: 14px/30px "宋体";
+            font-weight: 600;
+            left:50%;
+            top:80px;
+            text-align: center;
+            margin-left:-50px;
+            position: absolute;
+        }
+        #double{
+            top:60px;
+            display:none;
+        }
+        #rightDiv div, #middleDiv div, #leftDiv div{
+            width:30%;
+            height:5px;
+            margin:0 auto;
+            background-color: orangered;
+        }
+    </style>
+</head>
+<body>
+<div id="wrap">
+    <div id="gameContent">
+        <div id="leftDiv"><div></div></div>
+        <div id="middleDiv"><div></div></div>
+        <div id="rightDiv"><div></div></div>
+        <div id="hero"></div>
+        <div id="stick"></div>
+    </div>
+    <p id="score">0</p>
+    <p id="double">+2</p>
+    <p id="tip">按住使木棍变长</p>
+    <img src="img/seaWave.png">
+</div>
+<script src="js/doMove.js"></script>
+<script>
+    var timer=null;
+    var onOff=true;
+    var num=0;
+    var step=0;
+    var score=document.getElementById("score");
+    var count=0;
+    var isPlaying=false;//解决鼠标抬起后再点击接着变长
+    var stick=document.getElementById("stick");
+    var gameContent=document.getElementById("gameContent");
+    var hero=document.getElementById("hero");
+    var middleDiv=document.getElementById("middleDiv");
+    var leftDiv=document.getElementById("leftDiv");
+    var rightDiv=document.getElementById("rightDiv");
+    var oP=document.getElementById("tip");
+    var double=document.getElementById("double");
+    var arr=["牛逼啊兄dei","66666","行啊你","哦呦~赞~","哇这个人，可以啊有操作的！","皆九年之学，论秀，吾不及汝"];
+    var arrColor=["#ff0000","#e4007f","#100964","#e5004f","#32b16c","#00a0e9"];
+    middleDiv.style.width=randomNum(40,80)+'px';
+    middleDiv.style.left=randomNum(80,220)+'px';
+    document.onmousedown=function () {
+        if (isPlaying){
+            return;
+        }
+        timer=setInterval(function () {
+            num+=2;
+            stick.style.width=num+'px';
+        },20);
+        oP.style.display='none';
+        double.style.display='none';
+    };
+    document.onmouseup=function () {
+        if (isPlaying){
+            return;
+        }
+        isPlaying=true;
+        clearInterval(timer);
+        middleLeft=middleDiv.offsetLeft;
+        next=createNext();
+        rightDiv.style.width=next[1]+'px';
+        rightDiv.style.left=next[0]+'px';
+
+        setTimeout(function () {
+            stick.style.transition="0.5s";
+            stick.style.transform="rotate(0deg)";
+            if (num<middleDiv.offsetLeft-40||num>middleDiv.offsetLeft+middleDiv.offsetWidth-40)
+            {/*console.log("失败")*/
+            onOff=false;
+            }
+        },200);
+
+    };
+    stick.addEventListener("transitionend",function () {
+        var perfectArea=middleDiv.getElementsByTagName("div")[0];
+        if (!onOff){
+            doMove(hero,'left',2,num,function () {
+                stick.style.transform="rotate(45deg)";
+                doMove(hero,'bottom',10,0,function() {
+                    alert("游戏结束");
+                    location.reload();
+                });
+            })
+        } else{
+            hero.style.transition="1s";
+            hero.style.left=middleDiv.offsetLeft+'px';
+            double.innerText="+1";
+            double.style.display="block";
+            if (num>perfectArea.offsetLeft-40+middleDiv.offsetLeft&&num<perfectArea.offsetLeft+perfectArea.offsetWidth+middleDiv.offsetLeft-40){
+                count++;
+                oP.style.display="block";
+                double.innerText="+2";
+                oP.innerText=arr[randomNum(0,6)];
+                oP.style.color=arrColor[randomNum(0,6)];
+                /*double.style.display="block";
+                doMove(double,'top',1,10,function () {
+                    double.style.top='60px';
+                    double.style.display="none";
+                });*/
+            }
+            doMove(double,'top',0.7,10,function () {
+                double.style.top='60px';
+                double.style.display="none";
+            });
+        }
+    });
+    hero.addEventListener("transitionend",function (ev) {
+        gameContent.style.transition="1s";
+        gameContent.style.left=-middleDiv.offsetLeft+'px';
+        step=1;
+        count++;
+        score.innerHTML=count;
+        ev.stopPropagation();
+    });
+    gameContent.addEventListener("transitionend",function () {
+        if (step==1){
+            gameContent.style.transition='none';
+            gameContent.style.left=0;
+            hero.style.transition='none';
+            hero.style.left=0;
+            stick.style.transition='none';
+            stick.style.width=0;
+            stick.style.transform="rotate(-90deg)";
+            leftDiv.style.width=middleDiv.offsetWidth+'px';
+            middleDiv.style.width=next[1]+'px';
+            middleDiv.style.left=next[0]-middleLeft+'px';
+            num=0;
+            step=0;
+            isPlaying=false;
+        };
+    });
+    function randomNum(start,end) {
+        return parseInt(Math.random()*(end-start)+start)
+    };
+    function createNext() {
+       var iLeft=randomNum(300,300+middleLeft-80);
+       var iWidth=randomNum(40,80);
+       return[iLeft,iWidth];
+    }
+</script>
+</body>
+</html>
